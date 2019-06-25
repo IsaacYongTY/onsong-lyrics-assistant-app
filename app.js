@@ -156,6 +156,15 @@ Keywords: ${song.firstAlphabet}, ${song.language}, ${song.keywords}\n
 
 }
 
+const spotifyMetaTemplate = (data) => {
+ return `
+Key: ${data.key}
+Tempo: ${data.tempo}
+Duration: ${data.duration}
+Time: ${data.time}
+`
+
+}
 //console.log(document.querySelector('#fsZx3').textContent)
 
 const removeWatermark = function (song) {
@@ -208,12 +217,14 @@ sanitizeGeniusLyrics = function (song) {
 //Remarks:
 
 // Genius: div class = "song_body_lyrics"
-//const authorize = 'https://accounts.spotify.com/authorize?client_id=4b0727b570a44d218871528301c9504fcle&response_type'
 
 
-let access = ''
 
-var SpotifyWebApi = require('spotify-web-api-node');
+let inputURI = 'spotify:track:6LLyiqMoNoex4Zu0ka4iF2'
+
+const trackId = inputURI.replace('spotify:track:','') 
+
+const SpotifyWebApi = require('spotify-web-api-node');
 
 var spotifyApi = new SpotifyWebApi({
     clientId: '4b0727b570a44d218871528301c9504f',
@@ -238,20 +249,86 @@ spotifyApi.clientCredentialsGrant().then(
   }
 );
 
-
+let rawTrackData = {}
 /* Get Audio Features for a Track */
 
 const getAudioFeature = function () {
-    spotifyApi.getAudioFeaturesForTrack('4opWQWmRcam3BApZwmPX7c')
+    spotifyApi.getAudioFeaturesForTrack(trackId)
   .then(function(data) {
     console.log(data.body);
+    rawTrackData = {
+      key: data.body.key,
+      tempo: data.body.tempo,
+      id: data.body.id,
+      duration: data.body.duration_ms,
+      time: data.body.time_signature
+    };
+    console.log(rawTrackData);
+    
+    processedTrackData = {
+      key: assignPitchClass(rawTrackData.key),
+      duration: convertDurationToMinSec(rawTrackData.duration),
+      time: convertTime(rawTrackData.time),
+      tempo: convertTempo(rawTrackData.tempo)
+    }
+    console.log(spotifyMetaTemplate(processedTrackData))
+
+
   }, function(err) {
     console.log(err);
   });
 }
 
-setTimeout(getAudioFeature, 2000)
 
+setTimeout(getAudioFeature, 500)
+
+const assignPitchClass = function (spotifyKey) {
+  if (spotifyKey === 0) {
+      key = 'C'
+  }   else if (spotifyKey === 1) {
+      key = 'Db'
+  }   else if (spotifyKey === 2) {
+      key = 'D'
+  }   else if (spotifyKey === 3) {
+      key = 'Eb'
+  }   else if (spotifyKey === 4) {
+      key = 'E'
+  }   else if (spotifyKey === 5) {
+      key = 'F'
+  }   else if (spotifyKey === 6) {
+      key = 'Gb'
+  }   else if (spotifyKey === 7) {
+      key = 'G'
+  }   else if (spotifyKey === 8) {
+      key = 'Ab'
+  }   else if (spotifyKey === 9) {
+      key = 'A'
+  }   else if (spotifyKey === 10) {
+      key = 'Bb'
+  }   else if (spotifyKey === 11) {
+      key = 'B'
+  } else {
+      console.log('error')
+  }
+
+  return key
+
+}
+
+const convertDurationToMinSec = function (spotifyDuration) {
+    let timeSec = spotifyDuration/1000/60
+    let min = Math.floor(timeSec)
+    let sec = Math.round((timeSec - min) * 60)
+    return `${min}:${sec}`
+}
+
+const convertTime = function (spotifyTime) {
+    return `${spotifyTime}/4`
+}
+
+const convertTempo = function (spotifyTempo) {
+  return `${Math.round(spotifyTempo)}`
+}
 
 
   
