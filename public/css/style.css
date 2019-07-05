@@ -1,8 +1,16 @@
-h1 {
-    color: blue;
-    font-size: 125%;    
+body {
+    font-family: "Helvetica Neue", "Open Sans", Arial;
 }
 
+h1 {
+    color: grey;
+    font-size: 200%;    
+    text-align: center;
+}
+
+#output {
+    padding: 20px 20px 50px 20px;
+}
 img {
 
     width: 50%;
