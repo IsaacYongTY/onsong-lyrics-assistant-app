@@ -1,11 +1,10 @@
-
-const dummySong = [{
+const song = [{
     title:'只是太爱你',
     romTitle: 'Zhi Shi Tai Ai Ni',
     artist: '张敬轩',
     romArtist: 'Zhang Jing Xuan',
     key: 'A',
-    tempo: 70,
+    tempo: 65,
     duration: '4:30',
     time: '4/4',
     firstAlphabet: ``,
@@ -134,118 +133,29 @@ Beautiful soul
         `
 }]
 
-let song = {}
+// const metaTemplate = (song) => {
 
+//     if (song.romTitle.length === 0) {
+//         resultTitle = `${song.title}`
+//         resultArtist = `${song.artist}`
+//     }   else {
+//         resultTitle = `${song.romTitle} ${song.title}`
+//         resultArtist = `${song.romArtist} ${song.artist}`
+//     }
+//     return `${resultTitle}
+// ${resultArtist}
+// Key: ${song.key}
+// Tempo: ${song.tempo}
+// Duration: ${song.duration}
+// Time: ${song.time}
+// Keywords: ${song.firstAlphabet}, ${song.language}, ${song.keywords}\n
+// `
 
-const metaTemplate = (song) => {
+// }
 
-    if (song.romTitle.length === 0) {
-        resultTitle = `${song.title}`
-        resultArtist = `${song.artist}`
-    }   else {
-        resultTitle = `${song.romTitle} ${song.title}`
-        resultArtist = `${song.romArtist} ${song.artist}`
-    }
-    return `${resultTitle}
-${resultArtist}
-Key: ${song.key}
-Tempo: ${song.tempo}
-Duration: ${song.duration}
-Time: ${song.time}
-Keywords: ${song.firstAlphabet}, ${song.language}, ${song.keywords}\n
-`
-
-}
-
-
-const removeWatermark = function (song) {
-    song.lyrics = song.lyrics.replace('更多更详尽歌词 在 ※ Mojim.com　魔镜歌词网 ', '')
-}
-
-const getFirstAlphabet = function (song) {
-    
-    if(song.romTitle.length === 0) {
-        splittedTitle = song.title.split(' ') // using split returns an array
-    }   else {
-        splittedTitle = song.romTitle.split(' ') // using split returns an array
-    }
-    
-
-    let resultString = ''
-
-    for(index=0; index < splittedTitle.length; index++) {
-        eachString = splittedTitle[index].toLowerCase()
-        resultString += eachString[0] //get first alphabet and add to string
-    }
-    
-    song.firstAlphabet = resultString
-
-    
-}
-
-// Retrieve an access token
-spotifyApi.clientCredentialsGrant().then(
-    function(data) {
-      console.log('The access token expires in ' + data.body['expires_in']);
-      console.log('The access token is ' + data.body['access_token']);
-  
-      // Save the access token so that it's used in future calls
-      spotifyApi.setAccessToken(data.body['access_token']);
-    },
-    function(err) {
-      console.log(
-        'Something went wrong when retrieving an access token',
-        err.message
-      );
-    }
-  );
-
-
-
-createOnSongFile = function (song) {
-    sanitizeGeniusLyrics(song)
-    removeWatermark(song)
-    getFirstAlphabet(song)
-    // fs.writeFileSync(`./output-folder/${song.title}.onsong`,`${metaTemplate(song)}O: ${song.key}\n\n${song.lyrics}`)
-}
-
-
-document.querySelector('#input').addEventListener('submit', function (e) {
-    e.preventDefault()
-    
-    song = {
-        title:`${e.target.elements.title.value}`,
-        romTitle: `${e.target.elements.romTitle.value}`,
-        artist: `${e.target.elements.artist.value}`,
-        romArtist: `${e.target.elements.romArtist.value}`,
-        key: `${e.target.elements.key.value}`,
-        tempo: `${e.target.elements.tempo.value}`,
-        duration: `${e.target.elements.duration.value}`,
-        time: `${e.target.elements.time.value}`,
-        firstAlphabet: ``,
-        keywords: `${e.target.elements.keywords.value}`,
-        language: `${e.target.elements.language.value}`,
-        lyrics: document.querySelector('#lyrics').value
-    }
-
-    sanitizeGeniusLyrics(song)
-    removeWatermark(song)
-    getFirstAlphabet(song)
-    console.log(e)
-    document.querySelector('#output').value = `${metaTemplate(song)}` + song.lyrics
-})
-
-sanitizeGeniusLyrics = function (song) {
-    regex1 = /\[/g     // remove [ ]
-    regex2 = /\]/g
-    song.lyrics = song.lyrics.replace(regex1, '')
-    song.lyrics = song.lyrics.replace(regex2, ':')
-}
-
-
-
-//Remarks:
-
-// Genius: div class = "song_body_lyrics"
-// mojim: div id = "fsZx3"
-
+// const spotifyMetaTemplate = (data) => 
+// `
+// Key: ${data.key}
+// Tempo: ${data.tempo}
+// Duration: ${data.duration}
+// Time: ${data.time}
