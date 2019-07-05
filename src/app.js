@@ -5,7 +5,7 @@ const chineseToPinyin = require('chinese-to-pinyin')
 
 const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
 
 const publicDirectoryPath = path.join(__dirname, '../public')
@@ -13,9 +13,7 @@ const publicDirectoryPath = path.join(__dirname, '../public')
 
 app.use(express.static(publicDirectoryPath))
 
-app.listen(port, () => {
-    console.log(`Server is up on port ${port}`)
-})
+
 
 const assignPitchClass = myFunctions.assignPitchClass
 const convertDurationToMinSec = myFunctions.convertDurationToMinSec
@@ -110,7 +108,9 @@ app.get('/credential', (req, res) => {
   );
 })
 
-
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`)
+})
 
 
   
