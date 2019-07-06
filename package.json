@@ -12,6 +12,7 @@
   "dependencies": {
     "chinese-to-pinyin": "^0.1.8",
     "express": "^4.17.1",
+    "hbs": "^4.0.4",
     "nodemon": "^1.19.1",
     "request": "^2.88.0",
     "spotify-web-api-node": "^4.0.0"

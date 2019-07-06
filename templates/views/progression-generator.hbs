@@ -2,13 +2,11 @@
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
     </head>
 
     <body>
-        
-        <h1>Progression Generator for OnSong</h1>
-        <p> App created by Isaac Yong</p>
+        {{>header}}
 
         <form id="prog-form">
             Key:&nbsp&nbsp<select id="prog-key" placeholder="Section here" name="inputKey"> 
@@ -86,8 +84,10 @@
 
         <p><a href="..">Back</a></p>
         
-        <script src="./js/progression-generator-functions.js"></script>
-        <script src="./js/progression-generator-app.js"></script>
+        {{>footer}}
+
+        <script src="/js/progression-generator-functions.js"></script>
+        <script src="/js/progression-generator-app.js"></script>
 
         
 

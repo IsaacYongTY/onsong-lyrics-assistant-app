@@ -2,25 +2,26 @@
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
     </head>
 
     <body>
-        <h1>BPM App</h1>
+        {{>header}}
         <p>App created by Isaac Yong</p>
 
         <p>Count: <input id="counter" type="text" ></p>
         <p>BPM: <input id="bpm-value" type="text"></p>
-        <button id="tap">Tap here</button>&nbsp&nbsp&nbsp&nbsp&nbsp
+        <button id="tap">Tap here</button>
 
         <button id="clear">Clear</button><br/>
         or tap the Space bar
-        <br/><br>
+        <br/><br> 
         (To be implemented)
         <button id="listen">Listen to the song</button>
 
         <p><a href="..">Back</a></p>
 
-        <script src="bpm.js"></script>
+        {{>footer}}
+        <script src="/js/bpm.js"></script>
     </body>
 </html>
