@@ -19,11 +19,6 @@ document.querySelector('#spotify-uri').addEventListener('submit', (e) => {
 
 })
 
-document.querySelector('#get-credential').addEventListener('click', (e) => {
-    
-    fetch('./credential').then((response) => {
-        console.log(response)
-    })
-})
+
 
 console.log('Client side Javascript is up!')
