@@ -23,6 +23,7 @@ app.get('', (req, res) => {
     name: 'Isaac Yong'
   })
 })
+
 app.get('/help', (req, res) => {
   res.render('help', {
     title: 'Help',
@@ -50,18 +51,13 @@ app.get('/spotify-meta-tool', (req, res) => {
     name: 'Isaac Yong'
   })
 })
+
 app.get('/about', (req, res) => {
   res.render('about', {
     title: 'About',
     name: 'Isaac Yong'
   })
 })
-
-
-
-
-
-
 
 const getAudioFeatures = require('./utils/get-audio-features')
 const clientCredentialGrant = require('./utils/client-credential-grant')
@@ -70,13 +66,16 @@ const getRomTitle = require('./utils/get-rom-title')
 
 
 
+
 let data = {}
 let processedTrackData = {}
+
+const containsChinese = require('contains-chinese')
 
 app.get('/track', (req, res) => {
   
   spotifyUri = req.query.spotifyUri
-
+  console.log(spotifyUri)
   clientCredentialGrant((accessToken) => {
 
     getAudioFeatures(accessToken, spotifyUri, (processedTrackData) => {
@@ -84,7 +83,14 @@ app.get('/track', (req, res) => {
       getTrackInfo(accessToken, spotifyUri, (processedTrackData) => {
         data = processedTrackData
 
-        processedTrackData.romTitleArray = getRomTitle(processedTrackData.title)
+        const isChinese = containsChinese(processedTrackData.title)
+
+        if (isChinese) {
+            processedTrackData.romTitleArray = getRomTitle(processedTrackData.title)
+            processedTrackData.language = 'chinese'
+            console.log('is Chinese')
+        }
+        
 
         console.log(data)
 

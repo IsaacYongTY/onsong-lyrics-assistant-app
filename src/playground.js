@@ -1,14 +1,8 @@
-const myFunction = (data, callback) => {
-    setTimeout( () => {
-        console.log(data)
+const containsChinese = require('contains-chinese')
 
-    callback()
-    
-    }, 2000)
+const title = '情非得已'
 
-    
-}
+console.log(title)
+const isChinese = containsChinese(title)
 
-myFunction('First function', () => {
-    console.log('Callback function')
-})
+console.log(isChinese)
