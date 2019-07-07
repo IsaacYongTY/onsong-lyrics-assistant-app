@@ -11,10 +11,21 @@
         {{>header}}
 
         <form id="spotify-uri">
-            <input name="spotifyUri" placeholder="Spotify URI here" value="spotify:track:6LLyiqMoNoex4Zu0ka4iF2"> 
+            <input id="spotify-uri-input" type="text" name="spotifyUri" placeholder="Spotify URI here" value="spotify:track:6LLyiqMoNoex4Zu0ka4iF2"> 
             <button>Submit</button>
         </form>
 
+        <label>
+            <input type="checkbox" id="pinyin-is-checked" checked>Pinyin
+
+            <select id="syllable-required">
+                    <option value="1">1</option>
+                    <option value="2" selected="selected">2</option>
+                    <option value="All">All</option>
+            </select>
+
+        </label>
+        
         <div id="output"></div>
         
         

@@ -66,6 +66,7 @@ app.get('/about', (req, res) => {
 const getAudioFeatures = require('./utils/get-audio-features')
 const clientCredentialGrant = require('./utils/client-credential-grant')
 const getTrackInfo = require('./utils/get-track-info')
+const getRomTitle = require('./utils/get-rom-title')
 
 let data = {}
 let processedTrackData = {}
@@ -77,11 +78,12 @@ app.get('/track', (req, res) => {
   clientCredentialGrant((accessToken) => {
 
     getAudioFeatures(accessToken, spotifyUri, (processedTrackData) => {
-      data = processedTrackData
-      console.log(data)
-
+      
       getTrackInfo(accessToken, spotifyUri, (processedTrackData) => {
         data = processedTrackData
+
+        processedTrackData.romTitleArray = getRomTitle(processedTrackData.title)
+
         console.log(data)
 
         res.send(data)
@@ -89,8 +91,7 @@ app.get('/track', (req, res) => {
     }) 
   })
   
-  //processedTrackData.romTitle = myFunctions.capitalizeString(chineseToPinyin(processedTrackData.title, {noTone: true}))
-  //processedTrackData.romArtist = myFunctions.capitalizeString(chineseToPinyin(processedTrackData.artist, {noTone: true}))
+  
 })
 
 
