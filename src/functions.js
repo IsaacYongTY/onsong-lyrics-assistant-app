@@ -1,6 +1,4 @@
-const removeWatermark = function (song) {
-    song.lyrics = song.lyrics.replace('更多更详尽歌词 在 ※ Mojim.com　魔镜歌词网 ', '')
-}
+
 
 const getFirstAlphabet = function (song) {
     
