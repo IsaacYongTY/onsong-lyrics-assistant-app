@@ -98,16 +98,16 @@ app.get('/track', (req, res) => {
 
 const webScraper = require('./utils/web-scraper')
 
-// app.get('/lyrics', (req,res) => {
-//   url = req.query.url
+app.get('/lyrics', (req,res) => {
+  url = req.query.url
 
-//   webScraper(url, (output) => {
+  webScraper(url, (output) => {
 
-//       res.send(output)
-//   })
+      res.send(output)
+  })
 
   
-// })
+})
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`)

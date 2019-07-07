@@ -12,7 +12,7 @@ const removeWatermark = function (lyrics) {
 }
 
 const webScraper = (url,callback) => {
-    request({url: url, headers: {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36.'}}, (error,response,html) => {
+    request({url: url, headers: {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36'}}, (error,response,html) => {
     
         if(!error && response.statusCode == 200) {
             const $ = cheerio.load(html)
