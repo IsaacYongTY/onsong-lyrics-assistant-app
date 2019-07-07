@@ -12,7 +12,7 @@ const removeWatermark = function (lyrics) {
 }
 
 const webScraper = (url,callback) => {
-    request({url: url, headers: {'User-Agent': 'ua'}}, (error,response,html) => {
+    request({url: url}, (error,response,html) => {
     
         if(!error && response.statusCode == 200) {
             const $ = cheerio.load(html)
