@@ -11,8 +11,17 @@ const removeWatermark = function (lyrics) {
     return lyrics.replace('<a href="http://mojim.com">&#x203B; Mojim.com&#x3000;&#x9B54;&#x955C;&#x6B4C;&#x8BCD;&#x7F51; </a>', '')
 }
 
+
 const webScraper = (url,callback) => {
-    request({url: url}, (error,response,html) => {
+
+    const option = {
+        url: url,
+        proxy: process.env.QUOTAGUARDSTATIC_URL,
+        headers: {
+            'User-Agent': 'node.js'
+        }
+    }
+    request(option, (error,response,html) => {
     
         if(!error && response.statusCode == 200) {
             const $ = cheerio.load(html)
