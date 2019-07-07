@@ -47,26 +47,25 @@ document.querySelector('#spotify-uri').addEventListener('submit', (e) => {
     }) 
 
     const lyricsUrl = e.target.elements.lyricsUrl.value
-    console.log(lyricsUrl)
 
-    if (lyricsUrl.length > 0) {
+    // if (lyricsUrl.length > 0) {
 
         
         
-        fetch('./lyrics?url=' + lyricsUrl).then((response) => {
-            response.json().then((data) => {
-                console.log(data)
+    //     fetch('./lyrics?url=' + lyricsUrl).then((response) => {
+    //         response.json().then((data) => {
+    //             console.log(data)
 
                 
 
-                document.querySelector('#lyrics-output').innerHTML += data.lyrics
+    //             document.querySelector('#lyrics-output').innerHTML += data.lyrics
     
-                document.querySelector('#lyrics-output').focus()
-                document.execCommand('SelectAll')
-                document.execCommand('Copy')
-            })
-        })
-    }   
+    //             document.querySelector('#lyrics-output').focus()
+    //             document.execCommand('SelectAll')
+    //             document.execCommand('Copy')
+    //         })
+    //     })
+    // }   
   
     
 
