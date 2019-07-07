@@ -11,12 +11,17 @@
         {{>header}}
 
         <form id="spotify-uri">
-            <input id="spotify-uri-input" type="text" name="spotifyUri" placeholder="Spotify URI here" value="spotify:track:6LLyiqMoNoex4Zu0ka4iF2"> 
+            <input id="spotify-uri-input" type="text" name="spotifyUri" placeholder="Spotify URI here" value="spotify:track:6LLyiqMoNoex4Zu0ka4iF2">
+            <input id="url-input" type="text" placeholder="Lyrics site url" name="lyricsUrl" value="https://mojim.com/cny100015x31x16.htm">
             <button>Submit</button>
         </form>
 
+       
+
         <label>
             <input type="checkbox" id="pinyin-is-checked" checked>Pinyin
+
+            
 
             <select id="syllable-required">
                     <option value="1">1</option>
@@ -25,9 +30,10 @@
             </select>
 
         </label>
+
+        <br \><br \>
         
-        <div id="output"></div>
-        
+        <textarea id="lyrics-output" cols="150" rows="50"></textarea>
         
         {{>footer}}
         <script src="/js/spotify-meta-tool-client.js"></script>

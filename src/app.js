@@ -68,6 +68,8 @@ const clientCredentialGrant = require('./utils/client-credential-grant')
 const getTrackInfo = require('./utils/get-track-info')
 const getRomTitle = require('./utils/get-rom-title')
 
+
+
 let data = {}
 let processedTrackData = {}
 
@@ -94,6 +96,18 @@ app.get('/track', (req, res) => {
   
 })
 
+const webScraper = require('./utils/web-scraper')
+
+app.get('/lyrics', (req,res) => {
+  url = req.query.url
+
+  webScraper(url, (output) => {
+
+      res.send(output)
+  })
+
+  
+})
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`)
