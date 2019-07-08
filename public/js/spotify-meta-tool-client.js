@@ -10,6 +10,28 @@ const generateUserRomString = (romTitleArray, syllableRequired) => {
     return userRomString
 }
 
+const searchDOM = (title, language) => {
+
+    document.querySelector('#search-link').innerHTML = ''
+
+    let searchTerm = ''
+
+    if (language === 'chinese') {
+        searchTerm = title + ' 歌词'
+    }   else {
+        searchTerm = title + ' lyrics'
+    }
+   
+    const googleUrl = 'https://www.google.com/search?q=' + searchTerm
+
+    searchEl = document.createElement('a')
+    searchEl.setAttribute('href', googleUrl)
+    searchEl.setAttribute('target', '_blank')
+    searchEl.textContent = `Search "${searchTerm}" on Google`
+
+    document.querySelector('#search-link').appendChild(searchEl)
+}
+
 document.querySelector('#spotify-uri').addEventListener('submit', (e) => {
     e.preventDefault()
 
@@ -32,9 +54,10 @@ document.querySelector('#spotify-uri').addEventListener('submit', (e) => {
 
     fetch('./track?spotifyUri=' + spotifyUri).then((response) => {
         response.json().then((data) => {
-            console.log(spotifyUri)
+            
             console.log(data)
             
+            searchDOM(data.title, data.language)
             const pinyinIsChecked = document.querySelector('#pinyin-is-checked').checked
 
             let syllableRequired = ''

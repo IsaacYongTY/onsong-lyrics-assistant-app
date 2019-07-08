@@ -88,7 +88,8 @@ app.get('/track', (req, res) => {
         if (isChinese) {
             processedTrackData.romTitleArray = getRomTitle(processedTrackData.title)
             processedTrackData.language = 'chinese'
-            console.log('is Chinese')
+        } else {
+            processedTrackData.language = 'english'
         }
         
 
