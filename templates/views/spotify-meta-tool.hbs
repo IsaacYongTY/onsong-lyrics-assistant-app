@@ -2,46 +2,48 @@
 
 <html>
     <head>
+        <title>{{ title }}</title>
         <link rel="stylesheet" href="/css/styles.css" type="text/css">
-        
+        <link rel="icon" type="img/png" href="/img/ichords-icon.png">
     </head>
 
     <body>
 
         {{>header}}
-    
-        <form id="spotify-uri">
-            <input id="spotify-uri-input" type="text" name="spotifyUri" placeholder="spotify:track:6LLyiqMoNoex4Zu0ka4iF2">
-            <!--
-            <input id="url-input" type="text" placeholder="Lyrics site url" name="lyricsUrl" value="https://mojim.com/cny100015x31x16.htm">
-            -->
-            <button>Submit</button>
-        </form>
-    
 
-        <div id="error-message"></div>
-        <label>
-            <input type="checkbox" id="pinyin-is-checked" checked>Pinyin
+            <div class="main-content">
+                <form id="spotify-uri">
+                <input id="spotify-uri-input" type="text" name="spotifyUri" placeholder="spotify:track:6LLyiqMoNoex4Zu0ka4iF2" autocomplete="off">
+                <!--
+                <input id="url-input" type="text" placeholder="Lyrics site url" name="lyricsUrl" value="https://mojim.com/cny100015x31x16.htm">
+                -->
+                <button>Submit</button>
+            </form>
 
-            <select id="syllable-required">
-                    <option value="1">1</option>
-                    <option value="2" selected="selected">2</option>
-                    <option value="All">All</option>
-            </select>
+            <div id="error-message"></div>
 
-        </label>
+            <label>
+                <input type="checkbox" id="pinyin-is-checked" checked>Pinyin
 
-        <button id="copy">Copy to Clipboard</button>
-        <div id="search-link"></div>
+                <select id="syllable-required">
+                        <option value="1">1</option>
+                        <option value="2" selected="selected">2</option>
+                        <option value="All">All</option>
+                </select>
+            </label>
 
-        <br \><br \>
+            <button id="copy">Copy to Clipboard</button>
+            <div id="search-link"></div>
+
+            <br \><br \>
+            
+            <textarea id="lyrics-output" type="text" cols="100" rows="30"></textarea>
+        </div>
         
-        <textarea id="lyrics-output" type="text" cols="100" rows="30"></textarea>
         
         {{>footer}}
         
         <script src="/js/spotify-meta-tool-client.js"></script>
        
-        
     </body>
 </html>

@@ -83,8 +83,6 @@ const spotifyApi = new spotifyWebApi({
 const getAudioFeatures = (accessToken, spotifyUri, callback) => {
     spotifyApi.setAccessToken(accessToken)
 
-  
-  
     trackId = spotifyUri.replace('spotify:track:','') 
 
     
@@ -97,9 +95,6 @@ const getAudioFeatures = (accessToken, spotifyUri, callback) => {
           duration: convertDurationToMinSec(data.body.duration_ms),
           time: convertTime(data.body.time_signature),
         };
-    
-    
-    
     
     callback(processedTrackData)
 

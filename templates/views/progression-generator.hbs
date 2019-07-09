@@ -2,87 +2,92 @@
 
 <html>
     <head>
+        <title>{{ title }}</title>
         <link rel="stylesheet" type="text/css" href="/css/styles.css">
+        <link rel="icon" type="img/png" href="/img/ichords-icon.png">
     </head>
 
     <body>
         {{>header}}
-
-        <form id="prog-form">
-            Key:&nbsp&nbsp<select id="prog-key" placeholder="Section here" name="inputKey"> 
-                    <option>C</option>
-                    <option>Db</option>
-                    <option>D</option>
-                    <option>Eb</option>
-                    <option>F</option>
-                    <option>Gb</option>
-                    <option>G</option>
-                    <option>Ab</option>
-                    <option>A</option>
-                    <option>Bb</option>
-                    <option>B</option>
-                    <option>C#</option>
-                    <option>F#</option>
+        <div class="main-content">
+            <form id="prog-form">
+                Key:&nbsp&nbsp<select id="prog-key" placeholder="Section here" name="inputKey"> 
+                        <option>C</option>
+                        <option>Db</option>
+                        <option>D</option>
+                        <option>Eb</option>
+                        <option>F</option>
+                        <option>Gb</option>
+                        <option>G</option>
+                        <option>Ab</option>
+                        <option>A</option>
+                        <option>Bb</option>
+                        <option>B</option>
+                        <option>C#</option>
+                        <option>F#</option>
+                    </select>
+                    <br/>
+                    <br/>
+                Section:&nbsp&nbsp<select id="prog-section" placeholder="Section here" name="inputSection">
+                    <option></option>
+                    <option>Intro</option>
+                    <option>Verse</option>
+                    <option>Pre-Chorus</option>
+                    <option>Chorus</option>
+                    <option>Interlude</option>
+                    <option>Bridge</option>
+                    <option>Outro</option>
+                    <option>Hook</option>
+                    <option>Last Line</option>
+                    <option>Rap</option>
                 </select>
                 <br/>
+                
+
+                <p>Common <br />Progression:
+                    <select id="prog-common-progression" class="dropdown-menu">
+                        <option></option>
+                        <option value="15634325">Typical Chinese Ballad (Canon)</option>
+                        <option value="6415">Top 40s 4-Chords 1 (vi-IV-I-V)</option>
+                        <option value="1564">Top 40s 4-Chords 2 (I-V-vi-IV)</option>
+                        <option value="45362511">Chinese Ballad (IV-V-iii-vi-ii-V-I-I)</option>
+                        <option value="6251">Circle Progression (iv-ii-V-I)</option>
+                        <option></option>
+                    </select>
+
+                <input id="prog-text" type="text" placeholder="eg. 6415 or 1562M34mb7" name="inputProgression" value="" size = "25" autocomplete="off"> &lt-- Custom input
+                </p>
+                
+
+                Full Bar: <input id="prog-choice-1" type="radio" name="inputIsHalfBar" checked>
+                Spacing: <input id="spacing" type="text" placeholder="Section here" name="inputSpacing" value="14" size = "3"> Change if spacing is too narrow/wide<br/>
                 <br/>
-            Section:&nbsp&nbsp<select id="prog-section" placeholder="Section here" name="inputSection">
-                <option></option>
-                <option>Intro</option>
-                <option>Verse</option>
-                <option>Pre-Chorus</option>
-                <option>Chorus</option>
-                <option>Interlude</option>
-                <option>Bridge</option>
-                <option>Outro</option>
-                <option>Hook</option>
-                <option>Last Line</option>
-                <option>Rap</option>
-            </select>
-            <br/>
-            <br/>
-
-            Common <br/>Progression:&nbsp&nbsp<select id="prog-common-progression">
-                    <option></option>
-                    <option value="15634325">Typical Chinese Ballad (Canon)</option>
-                    <option value="6415">Top 40s 4-Chords 1 (vi-IV-I-V)</option>
-                    <option value="1564">Top 40s 4-Chords 2 (I-V-vi-IV)</option>
-                    <option value="45362511">Chinese Ballad (IV-V-iii-vi-ii-V-I-I)</option>
-                    <option value="6251">Circle Progression (iv-ii-V-I)</option>
-                    <option></option>
-                </select>
-
-            <input id="prog-text" type="text" placeholder="eg. 6415 or 1562M34mb7" name="inputProgression" value="" size = "25"> <-- Custom input
-            
-            <br/><br/>
-
-            Full Bar: <input id="prog-choice-1" type="radio" name="inputIsHalfBar" checked>
-            Spacing: <input id="spacing" type="text" placeholder="Section here" name="inputSpacing" value="14" size = "3"> Change if spacing is too narrow/wide<br/>
-            <br/>
-            Half Bar: <input id="prog-choice-2" type="radio" name="inputIsHalfBar" ><br/>
-            
-            <br/>
-
-            <textarea name="output" id="output-result" cols="70" rows="20"></textarea>
+                Half Bar: <input id="prog-choice-2" type="radio" name="inputIsHalfBar" ><br/>
                 
                 <br/>
 
-            <button>Generate</button>
+                <textarea name="output" id="output-result" type="text" cols="70" rows="20"></textarea>
+                    
+                    <br/>
+
+                <button>Generate</button>
+                
+            </form>
+
+            <button id="clear">Clear</button>
+            <button id="copy">Copy</button>
             
-        </form>
 
-        <button id="clear">Clear</button>
-        <button id="copy">Copy</button>
-        
+            <br/>
+            
 
-        <br/>
-        
-
-        <div id="result">
-        </div>
+            <div id="result">
+            </div>
 
 
-        <p><a href="..">Back</a></p>
+            <p><a href="..">Back</a></p>
+
+         </div>
         
         {{>footer}}
 

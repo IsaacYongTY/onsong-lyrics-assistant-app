@@ -1,16 +1,38 @@
 body {
-    font-family: "Helvetica Neue", "Open Sans", Arial;
+    font-family: Arial, "Helvetica Neue", "Open Sans";
     font-size: 16px;
+    max-width: 50%;
+    margin: 0 auto;
+    background-color: #FAFAFA;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex-grow: 1;
+
 }
 
 h1 {
-    color: rgb(37, 37, 37);
-    font-size: 200%;    
-    text-align: center;
+    color: #333333;
+    font-size: 200%;   
+    border-bottom: 1px solid #aaaaaa; 
+    padding-bottom: 8px;
 }
 
-#output {
-    padding: 20px 20px 50px 20px;
+header {
+    font-size: 20px;
+    padding: 16px 0px;
+   
+}
+
+header a {
+    margin: 8px 0 8px 0;
+    margin-right: 24px;
+    text-decoration: none;
+    color: #666666;
 }
 
 img {
@@ -20,26 +42,35 @@ img {
 
 
 #spotify-uri-input {
-    font-family: "Helvetica Neue", "Open Sans", Arial;
-    
     width: 300px;
 }
 
-input[type=text], select {
+input {
     
     font-size: 16px;
-    padding: 3px 5px 3px 8px;
+    padding: 5px 8px ;
+    border: 1px solid #aaaaaa;
+    border-radius: 3px;
+     
 }
 
+select {
+    font-size: 16px;
+   padding: 15px;
+   height: 30px;
+}
+
+
 button {
-    font-family: "Helvetica Neue", "Open Sans", Arial;
     font-size: 16px;
     border-radius: 5px; 
 }
 
 textarea[type=text] {
-    font-family: "Helvetica Neue", "Open Sans", Arial;
     font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #aaaaaa;
+    
 }
 
 #error-message {
@@ -47,11 +78,21 @@ textarea[type=text] {
     color: red;
     font-style: italic;
     width: 30%;
-    
 }
 
 form {
-    width: 50%;
+    padding: 10px 0;
+}
+
+footer {
+    color: #333333;
+    border-top: 1px solid #aaaaaa;
+    font-style: italic;
+    padding-bottom: 16px;
     
+}
+
+footer a {
+    color: #333333;
 }
 

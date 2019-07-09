@@ -2,7 +2,5 @@ const containsChinese = require('contains-chinese')
 
 const title = '情非得已'
 
-console.log(title)
-const isChinese = containsChinese(title)
+googleUrl = 'https://www.google.com/search?q=' + title
 
-console.log(isChinese)

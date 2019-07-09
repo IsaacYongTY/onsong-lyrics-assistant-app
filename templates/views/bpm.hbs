@@ -2,13 +2,16 @@
 
 <html>
     <head>
+        <title>{{ title }}</title>
         <link rel="stylesheet" type="text/css" href="/css/styles.css">
+        <link rel="icon" type="img/png" href="/img/ichords-icon.png">
     </head>
 
     <body>
         {{>header}}
 
-        <p>Count: <input id="counter" type="text" ></p>
+    <div class="main-content">
+         <p>Count: <input id="counter" type="text" ></p>
         <p>BPM: <input id="bpm-value" type="text"></p>
         <button id="tap">Tap here</button>
 
@@ -19,8 +22,10 @@
         <button id="listen">Listen to the song</button>
 
         <p><a href="..">Back</a></p>
+    </div>
+       
+         {{>footer}}
 
-        {{>footer}}
         <script src="/js/bpm.js"></script>
     </body>
 </html>
