@@ -1,12 +1,17 @@
-const generateUserRomString = (romTitleArray, syllableRequired) => {
+const generateUserRomString = (romTitle, syllableRequired) => {
+
+    romTitleArray = romTitle.split(' ')
 
     let userRomString = ''
 
-    for(index = 0; index < syllableRequired ; index++) {
-        userRomString += romTitleArray[index] + '\xa0'
-
+    if (romTitleArray.length < syllableRequired) {
+        syllableRequired = romTitleArray.length
     }
 
+    for(index = 0; index < syllableRequired ; index++) {
+        userRomString += romTitleArray[index] + '\xa0'
+    }
+    
     return userRomString
 }
 
@@ -39,10 +44,11 @@ document.querySelector('#spotify-uri').addEventListener('submit', (e) => {
 
 
     const spotifyUri = e.target.elements.spotifyUri.value
-    console.log(spotifyUri.length)
+
+    const standardSpotifyUriLength = 36
 
     // Error handler
-    if(spotifyUri.length !== 36) {
+    if(spotifyUri.length !== standardSpotifyUriLength) {
 
         const errorMessage = document.createElement('p')
         errorMessage.textContent = 'Invalid input, please try again'
@@ -63,14 +69,13 @@ document.querySelector('#spotify-uri').addEventListener('submit', (e) => {
             let syllableRequired = ''
             
             if(document.querySelector('#syllable-required').value === 'All') {
-                    syllableRequired = data.romTitleArray.length
+                    syllableRequired = data.romTitle.split(' ').length
             }   else {
                     syllableRequired = document.querySelector('#syllable-required').value
             }
             
             if (pinyinIsChecked && data.language === 'chinese') {
-                const romTitle = generateUserRomString(data.romTitleArray, syllableRequired)
-                console.log(romTitle)
+                const romTitle = generateUserRomString(data.romTitle, syllableRequired)
                 document.querySelector('#lyrics-output').value = `${romTitle}${data.title}\n`
             }   else {
                 document.querySelector('#lyrics-output').value = `${data.title}\n`
@@ -80,34 +85,11 @@ document.querySelector('#spotify-uri').addEventListener('submit', (e) => {
             document.querySelector('#lyrics-output').value += `Key: ${data.key}\n`
             document.querySelector('#lyrics-output').value += `Tempo: ${data.tempo}\n`
             document.querySelector('#lyrics-output').value += `Duration: ${data.duration}\n`
-            document.querySelector('#lyrics-output').value += `Time: ${data.time}\n\n`
+            document.querySelector('#lyrics-output').value += `Time: ${data.time}\n`
+            document.querySelector('#lyrics-output').value += `Keywords: ${data.firstAlphabet}, ${data.language}\n\n`
             document.querySelector('#lyrics-output').value += `O: ${data.key}\n\n`
         }) 
     }) 
-
-    //const lyricsUrl = e.target.elements.lyricsUrl.value
-
-    // if (lyricsUrl.length > 0) {
-
-        
-        
-    //     fetch('./lyrics?url=' + lyricsUrl).then((response) => {
-    //         response.json().then((data) => {
-    //             console.log(data)
-
-                
-
-    //             document.querySelector('#lyrics-output').value += data.lyrics
-    
-    //             document.querySelector('#lyrics-output').focus()
-    //             document.execCommand('SelectAll')
-    //             document.execCommand('Copy')
-    //         })
-    //     })
-    // }   
-  
-    
-
 })
 
 document.querySelector('#copy').addEventListener('click', (e) => {
@@ -115,7 +97,6 @@ document.querySelector('#copy').addEventListener('click', (e) => {
     document.execCommand('SelectAll')
     document.execCommand('Copy')
     document.querySelector('#lyrics-output').blur()
-
 })
 
 document.querySelector('#spotify-uri-input').addEventListener('click', (e) => {

@@ -71,6 +71,7 @@ let data = {}
 let processedTrackData = {}
 
 const containsChinese = require('contains-chinese')
+const getFirstAlphabet = require('./utils/get-first-alphabet')
 
 app.get('/track', (req, res) => {
   
@@ -86,10 +87,12 @@ app.get('/track', (req, res) => {
         const isChinese = containsChinese(processedTrackData.title)
 
         if (isChinese) {
-            processedTrackData.romTitleArray = getRomTitle(processedTrackData.title)
+            processedTrackData.romTitle = getRomTitle(processedTrackData.title)
             processedTrackData.language = 'chinese'
+            processedTrackData.firstAlphabet = getFirstAlphabet(processedTrackData.romTitle)
         } else {
             processedTrackData.language = 'english'
+            processedTrackData.firstAlphabet = getFirstAlphabet(processedTrackData.title)
         }
         
 

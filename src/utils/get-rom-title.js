@@ -1,4 +1,5 @@
 const chineseToPinyin = require('chinese-to-pinyin')
+const removeBrackets = require('./remove-brackets')
 
 const capitalizeString = (textString) => {
 
@@ -11,14 +12,21 @@ const capitalizeString = (textString) => {
             result += textString[index]
         }
     }
-    result = result.split(' ')
-    return result
+    return result.split(' ')
 }
 
 const getRomTitle = (title) => {
+
+    title = removeBrackets(title)
+    
+
     let romTitle = chineseToPinyin(title, {noTone: true})
-    romTitle = capitalizeString(romTitle)
-    return romTitle
+    romTitle = capitalizeString(romTitle).toString()
+
+    regex = /,/gi
+
+    return romTitle = romTitle.replace(regex, ' ')
+
 
 }
 
