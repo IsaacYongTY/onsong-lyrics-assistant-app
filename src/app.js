@@ -5,18 +5,51 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
 
+const userRouter = require('./routers/user')
+const songRouter = require('./routers/song')
+
 // Setup path for express
 const publicDirectoryPath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../templates/views')
 const partialsPath = path.join(__dirname, '../templates/partials')
 
+
+// MongoDB
+require('./db/mongoose.js')
+
+
 app.use(express.static(publicDirectoryPath))
+
+app.use(express.json())
+
+app.use(userRouter)
+app.use(songRouter)
 
 // Configure express to use hbs
 app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
 
+
+
+
+
+app.get('/signup', async (req, res) => {
+    res.render('signup', {
+      title: 'Sign Up Here!',
+      name: 'Isaac Yong'
+    })
+})
+
+
+app.get('/login', (req, res) => {
+  res.render('login', {
+    title:'Login',
+    name: 'Isaac Yong'
+  })
+})
+
+// Program in use
 app.get('', (req, res) => {
   res.render('index', {
     title: 'Home',
@@ -106,18 +139,6 @@ app.get('/track', (req, res) => {
   
 })
 
-// const webScraper = require('./utils/web-scraper')
-
-// // app.get('/lyrics', (req,res) => {
-// //   url = req.query.url
-
-// //   webScraper(url, (output) => {
-
-// //       res.send(output)
-// //   })
-
-  
-// // })
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`)

@@ -96,3 +96,34 @@ footer a {
     color: #333333;
 }
 
+#user-login-signup {
+    float: right;
+}
+
+#login-btn, #signup-btn{
+    
+    background-color: #72BAE6;
+    padding: 4px 16px 4px 16px;
+    color: #ffffff;
+    border-radius: 10px;
+    
+    /*
+    border: 3px solid #000000;
+    
+    */
+}
+
+#signup-btn {
+    background-color: orange;
+}
+
+#signup-form {
+    border: 1px solid #ffffff;
+    
+}
+
+#signup-form td {
+    border: 1px solid #ffffff;
+    text-align: right;
+    
+}
