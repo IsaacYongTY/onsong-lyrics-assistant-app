@@ -42,7 +42,7 @@ const getAudioFeatures = async(input) => {
             title: trackInfo.body.name,
             artist: trackInfo.body.artists[0].name,
             artistId: trackInfo.body.artists[0].id,
-            verified: false
+            verified: false,
         };
 
 

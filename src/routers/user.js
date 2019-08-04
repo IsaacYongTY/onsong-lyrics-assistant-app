@@ -21,7 +21,7 @@ router.post('/users', async (req, res) => {
 
 router.get('/users/me', auth, async (req, res) => {
     try {
-        console.log('in')
+       
         res.status(201).send(req.user)
     } catch (e) {
         res.status(500).send(e)
@@ -30,12 +30,13 @@ router.get('/users/me', auth, async (req, res) => {
 
 router.post('/users/login', async (req, res) => {
     try {
-        console.log('worked')
+        
         const user = await User.findByCredentials(req.body.email, req.body.password)
         const token = await user.generateAuthToken()
 
         res.cookie('auth_token', token)
         
+        console.log
             
         res.redirect('../dashboard')
     

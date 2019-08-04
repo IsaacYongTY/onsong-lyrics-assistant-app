@@ -4,16 +4,21 @@ const router = new express.Router()
 
 const Track = require('../models/track')
 
+const auth = require('../middleware/auth')
 
 const getAudioFeatures = require('../utils/get-audio-features')
 
-router.get('/tracks', async (req, res) => {
-  
+router.get('/tracks', auth, async (req, res) => {
+   
     const input = req.query.input
     
     try {
         const data = await getAudioFeatures(input)
   
+         data.contributorId = req.user._id
+
+        
+
         res.send(data)
   
     } catch (e) {

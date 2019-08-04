@@ -55,6 +55,10 @@ userSchema = new mongoose.Schema({
 
     rawData: {
         type: Object
+    },
+
+    contributorId: {
+        type: String
     }
 })
 
