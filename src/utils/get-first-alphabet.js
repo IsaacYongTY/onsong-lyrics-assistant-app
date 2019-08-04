@@ -1,7 +1,7 @@
 
 const removeBrackets = require('./remove-brackets')
 
-const getFirstAlphabet = function (input) {
+const getFirstAlphabet = (input) => {
    
     input = removeBrackets(input)
     

@@ -9,9 +9,10 @@
 
     <body>
         {{>header}}
+        {{>navbar}}
         <div class="main-content">
             <form id="prog-form">
-                Key:&nbsp&nbsp<select id="prog-key" placeholder="Section here" name="inputKey"> 
+                <p>Key:&nbsp&nbsp<select id="prog-key" placeholder="Section here" name="inputKey"> 
                         <option>C</option>
                         <option>Db</option>
                         <option>D</option>
@@ -28,21 +29,27 @@
                         <option>F#</option>
                     </select>
                     <br/>
-                    <br/>
-                Section:&nbsp&nbsp<select id="prog-section" placeholder="Section here" name="inputSection">
-                    <option></option>
-                    <option>Intro</option>
-                    <option>Verse</option>
-                    <option>Pre-Chorus</option>
-                    <option>Chorus</option>
-                    <option>Interlude</option>
-                    <option>Bridge</option>
-                    <option>Outro</option>
-                    <option>Hook</option>
-                    <option>Last Line</option>
-                    <option>Rap</option>
-                </select>
-                <br/>
+                    
+
+                    </p>
+                <p>
+                    Section:&nbsp&nbsp<select id="prog-section" placeholder="Section here" name="inputSection">
+                        <option></option>
+                        <option>Intro</option>
+                        <option>Verse</option>
+                        <option>Pre-Chorus</option>
+                        <option>Chorus</option>
+                        <option>Interlude</option>
+                        <option>Bridge</option>
+                        <option>Outro</option>
+                        <option>Hook</option>
+                        <option>Last Line</option>
+                        <option>Rap</option>
+                    </select>
+
+        
+
+                </p>
                 
 
                 <p>Common <br />Progression:
@@ -60,12 +67,14 @@
                 </p>
                 
 
-                Full Bar: <input id="prog-choice-1" type="radio" name="inputIsHalfBar" checked>
+                <p>
+                    Full Bar: <input id="prog-choice-1" type="radio" name="inputIsHalfBar" checked>
                 Spacing: <input id="spacing" type="text" placeholder="Section here" name="inputSpacing" value="14" size = "3"> Change if spacing is too narrow/wide<br/>
                 <br/>
                 Half Bar: <input id="prog-choice-2" type="radio" name="inputIsHalfBar" ><br/>
                 
                 <br/>
+                </p>
 
                 <textarea name="output" id="output-result" type="text" cols="70" rows="20"></textarea>
                     

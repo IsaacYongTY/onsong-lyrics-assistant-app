@@ -9,30 +9,30 @@
     <body>
         {{>header}}
 
-        <form id="signup-form">
+        <form id="signup-form", method="POST", action="/users">
             <table>
                 <tr id="first-name-row">
-                    <td>First Name: </td>
+                    <td><label for="firstName">First Name: </label></td>
                     <td><input id="first-name" type="text" name="firstName"></td>
                 </tr>
 
                 <tr id="last-name-row">
-                    <td>Last Name: </td>
+                    <td><label for="lastName">Last Name: </label></td>
                     <td><input id="last-name" type="text" name="lastName"></td>
                 </tr>
                 
                 <tr id="email-row">
-                    <td>E-mail: </td>
+                    <td><label for="email">E-mail: </label></td>
                     <td><input id="email" type="text" name="email"></td>
                 </tr>
 
                 <tr id="password-row">
-                    <td>Password: </td>
+                    <td><label for="password">Password: </label></td>
                     <td><input id="password" type="password" name="password"></tr><td>
                 </tr>
 
                 <tr id="confirm-password-row">
-                    <td>Confirm Password: </td>
+                    <td><label for="confirmPassword">Confirm Password:</label> </td>
                     <td><input id="password-confirm" type="password" name="confirmPassword"></td>
                 </tr>
             </table>
@@ -40,7 +40,7 @@
             <button>Create account</button>
         </form>
         
-        <script src="./js/signup.js"></script>
+     
     </body>
 </html>
 

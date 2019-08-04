@@ -50,7 +50,7 @@ document.querySelector('#signup-form').addEventListener('submit', (e) => {
 
 
 
-       fetch(`./users`, {method: 'POST',
+       fetch('./users', {method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -59,10 +59,26 @@ document.querySelector('#signup-form').addEventListener('submit', (e) => {
         }).then((response)=> {
             response.json().then((data) => {
                 console.log(data)
-                console.log(response)
+
+                if (data.errors) {
+
+                    if(data.errors.lastName) {
+                        console.log('Last name is required')
+                    }
+                    
+                    if(data.errors.password) {
+                        return console.log('Password must be longer than 6 characters')
+                    }
+                    
+                }  
+                
+                window.location.href = './'
+                    
+                
+
             })
             
         })
 
-    
+        
 })

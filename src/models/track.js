@@ -23,7 +23,7 @@ userSchema = new mongoose.Schema({
         type: String
     },
 
-    spotifyId: {
+    uri: {
         type: String
     },
 
@@ -51,10 +51,14 @@ userSchema = new mongoose.Schema({
     verified: {
         type: Boolean,
         default: false
+    },
+
+    rawData: {
+        type: Object
     }
 })
 
 
-const Song = mongoose.model('Song', userSchema)
+const Track = mongoose.model('Track', userSchema)
 
-module.exports = Song
+module.exports = Track

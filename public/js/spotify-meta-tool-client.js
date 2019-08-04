@@ -45,10 +45,11 @@ document.querySelector('#spotify-uri').addEventListener('submit', (e) => {
 
     const spotifyUri = e.target.elements.spotifyUri.value
 
-    const standardSpotifyUriLength = 36
+    const standardSpotifyUriLength = 36     // spotify:track:678Tg6Flw5FIO8wIMBaVX6
+    const standardTrackIdLength = 22     // 678Tg6Flw5FIO8wIMBaVX6
 
     // Error handler
-    if(spotifyUri.length !== standardSpotifyUriLength) {
+    if(spotifyUri.length !== standardSpotifyUriLength && spotifyUri.length !== standardTrackIdLength) {
 
         const errorMessage = document.createElement('p')
         errorMessage.textContent = 'Invalid input, please try again'
@@ -58,10 +59,8 @@ document.querySelector('#spotify-uri').addEventListener('submit', (e) => {
         document.querySelector('#error-message').innerHTML = ''
     }
 
-    fetch('./track?spotifyUri=' + spotifyUri).then((response) => {
+    fetch('../tracks?input=' + spotifyUri).then((response) => {
         response.json().then((data) => {
-            
-            console.log(data)
             
             searchDOM(data.title, data.language)
             const pinyinIsChecked = document.querySelector('#pinyin-is-checked').checked
@@ -88,6 +87,18 @@ document.querySelector('#spotify-uri').addEventListener('submit', (e) => {
             document.querySelector('#lyrics-output').value += `Time: ${data.time}\n`
             document.querySelector('#lyrics-output').value += `Keywords: ${data.firstAlphabet}, ${data.language}\n\n`
             document.querySelector('#lyrics-output').value += `O: ${data.key}\n\n`
+
+            const contributeIsChecked = document.querySelector('#contribute-is-checked').checked
+
+            if (contributeIsChecked) {
+                fetch('../tracks', {method: 'POST',
+                headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+                },
+                    body: JSON.stringify(data)
+                })
+            }
         }) 
     }) 
 })
