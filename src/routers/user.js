@@ -35,15 +35,11 @@ router.post('/users/login', async (req, res) => {
         const token = await user.generateAuthToken()
 
         res.cookie('auth_token', token)
-        
-        console.log
             
         res.redirect('../dashboard')
     
         //res.send( { user: user, token })
         
-           
-
     } catch (e) {
         console.log(e)
         res.status(404).send(e)

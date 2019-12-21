@@ -46,11 +46,24 @@ document.querySelector('#spotify-uri').addEventListener('submit', (e) => {
     const spotifyUri = e.target.elements.spotifyUri.value
 
     const standardSpotifyUriLength = 36     // spotify:track:678Tg6Flw5FIO8wIMBaVX6
+    const standardSpotifyWebLength = 53        //https://open.spotify.com/track/7B8gZQY2KaAP1Dn1fhDU67
     const standardTrackIdLength = 22     // 678Tg6Flw5FIO8wIMBaVX6
 
-    // Error handler
-    if(spotifyUri.length !== standardSpotifyUriLength && spotifyUri.length !== standardTrackIdLength) {
+    const spotifyLinkStart = spotifyUri 
 
+    const getTrackId = (spotifyUri) => {
+        spotifyUri = spotifyUri.replace('spotify:track:', '')
+        spotifyUri = spotifyUri.replace('https://open.spotify.com/track/', '')
+        spotifyUri = spotifyUri.substring(0,22)
+        return spotifyUri
+    }
+
+    const spotifyId = getTrackId(spotifyUri)
+
+    console.log(spotifyId)
+
+    // Error handler
+    if(spotifyId.length !== standardTrackIdLength) {
         const errorMessage = document.createElement('p')
         errorMessage.textContent = 'Invalid input, please try again'
         document.querySelector('#error-message').appendChild(errorMessage)
@@ -59,7 +72,7 @@ document.querySelector('#spotify-uri').addEventListener('submit', (e) => {
         document.querySelector('#error-message').innerHTML = ''
     }
 
-    fetch('../tracks?input=' + spotifyUri).then((response) => {
+    fetch('../tracks?input=' + spotifyId).then((response) => {
         response.json().then((data) => {
             
             searchDOM(data.title, data.language)

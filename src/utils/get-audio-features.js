@@ -7,7 +7,7 @@ const containsChinese = require('contains-chinese')
 const getFirstAlphabet = require('./get-first-alphabet')
 const getRomTitle = require('./get-rom-title')
 
-const getTrackId = require('./get-track-id')
+
 const spotifyWebApi = require('spotify-web-api-node')
 
 const spotifyApi = new spotifyWebApi({
@@ -16,13 +16,7 @@ const spotifyApi = new spotifyWebApi({
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
 })
 
-const getAudioFeatures = async(input) => {
-
-    if (input.includes('spotify:track:')) {
-        trackId = getTrackId(input)
-    }   else {
-        trackId = input
-    }
+const getAudioFeatures = async(trackId) => {
 
     const code = await spotifyApi.clientCredentialsGrant()
 
