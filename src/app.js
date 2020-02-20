@@ -114,6 +114,13 @@ app.get('/dashboard/spotify-meta-tool', auth, (req, res) => {
   })
 })
 
+app.get('/dashboard/lead-sheet-lyrics-helper', auth, (req, res) => {
+  res.render('lead-sheet-lyrics-helper', {
+    title: 'Lead Sheet Lyrics Helper',
+    name: 'Isaac Yong'
+  })
+})
+
 app.get('logout', auth, (req,res) => {
   res.render('logout')
 })

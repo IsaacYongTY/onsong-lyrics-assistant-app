@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <title>{{ title }} </title>
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+        <link rel="icon" type="png/jpg" href="/img/ichords-icon.png">
+    </head>
+
+    <body>
+        {{>header }}
+        {{>navbar }}
+
+        <div id="lead-sheet-input">
+            <form id="input-form">
+
+                <textarea id="text-input" cols="80" rows="30" placeholder="Input here" name="lyrics"></textarea>
+    
+                <br/ >
+                <button>Process</button>
+        
+                  <button id="clear-all">Clear All</button>
+            </form>
+     
+              <textarea id="text-output" cols="80" rows="30" placeholder="Output here"></textarea>
+        </div>
+      
+      
+   
+
+    
+        <script src="/js/lead-sheet-lyrics-helper-functions.js"></script>
+        <script src="/js/lead-sheet-lyrics-helper-app.js"></script>
+    </body>
+</html>

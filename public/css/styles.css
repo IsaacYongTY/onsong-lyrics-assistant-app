@@ -175,3 +175,18 @@ footer a {
     text-align: right;
     
 }
+
+#lead-sheet-input {
+  
+    float:left;
+
+}
+
+#input-form {
+    float: left;
+    padding: 10px;
+}
+
+#text-output {
+    padding: 10px;   
+}
