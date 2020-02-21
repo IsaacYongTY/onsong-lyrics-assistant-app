@@ -45,7 +45,8 @@ document.querySelector('#spotify-uri').addEventListener('submit', (e) => {
 
     const spotifyUri = e.target.elements.spotifyUri.value
 
-    const standardSpotifyUriLength = 36     // spotify:track:678Tg6Flw5FIO8wIMBaVX6 const standardSpotifyWebLength = 53        //https://open.spotify.com/track/7B8gZQY2KaAP1Dn1fhDU67 const standardTrackIdLength = 22     // 678Tg6Flw5FIO8wIMBaVX6
+    const standardSpotifyUriLength = 36     // spotify:track:678Tg6Flw5FIO8wIMBaVX6 const standardSpotifyWebLength = 53        //https://open.spotify.com/track/7B8gZQY2KaAP1Dn1fhDU67 c
+    const standardTrackIdLength = 22     // 678Tg6Flw5FIO8wIMBaVX6
     const spotifyLinkStart = spotifyUri 
 
     const getTrackId = (spotifyUri) => {
