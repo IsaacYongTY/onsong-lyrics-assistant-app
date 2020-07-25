@@ -84,7 +84,7 @@ document.querySelector('#spotify-uri').addEventListener('submit', (e) => {
                     syllableRequired = document.querySelector('#syllable-required').value
             }
             
-            if (pinyinIsChecked && data.language === 'chinese') {
+            if (pinyinIsChecked && data.language === 'mandarin') {
                 const romTitle = generateUserRomString(data.romTitle, syllableRequired)
                 document.querySelector('#lyrics-output').value = `${romTitle}${data.title}\n`
             }   else {
@@ -97,6 +97,7 @@ document.querySelector('#spotify-uri').addEventListener('submit', (e) => {
             document.querySelector('#lyrics-output').value += `Duration: ${data.duration}\n`
             document.querySelector('#lyrics-output').value += `Time: ${data.time}\n`
             document.querySelector('#lyrics-output').value += `Keywords: ${data.firstAlphabet}, ${data.language}\n\n`
+            document.querySelector('#lyrics-output').value += `Year Released: ${data.yearReleased}\n\n`
             document.querySelector('#lyrics-output').value += `O: ${data.key}\n\n`
 
             const contributeIsChecked = document.querySelector('#contribute-is-checked').checked

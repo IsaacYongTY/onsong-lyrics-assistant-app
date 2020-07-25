@@ -37,14 +37,16 @@ const getAudioFeatures = async(trackId) => {
             artist: trackInfo.body.artists[0].name,
             artistId: trackInfo.body.artists[0].id,
             verified: false,
+            yearReleased: trackInfo.body.album.release_date.slice(0,4)
         };
 
+     
 
         const isChinese = containsChinese(processedTrackData.title)
 
         if (isChinese) {
             processedTrackData.romTitle = getRomTitle(processedTrackData.title)
-            processedTrackData.language = 'chinese'
+            processedTrackData.language = 'mandarin'
             processedTrackData.firstAlphabet = getFirstAlphabet(processedTrackData.romTitle)
         } else {
             processedTrackData.language = 'english'
