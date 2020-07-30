@@ -21,7 +21,7 @@ const searchDOM = (title, language) => {
 
     let searchTerm = ''
 
-    if (language === 'chinese') {
+    if (language === 'mandarin') {
         searchTerm = title + ' 歌词'
     }   else {
         searchTerm = title + ' lyrics'
@@ -73,32 +73,34 @@ document.querySelector('#spotify-uri').addEventListener('submit', (e) => {
     fetch('../tracks?input=' + spotifyId).then((response) => {
         response.json().then((data) => {
             
-            searchDOM(data.title, data.language)
+            const { title, romTitle, language, artist, key, tempo, duration, time, firstAlphabet, yearReleased } = data
+
+            searchDOM(title, language)
             const pinyinIsChecked = document.querySelector('#pinyin-is-checked').checked
 
             let syllableRequired = ''
             
             if(document.querySelector('#syllable-required').value === 'All') {
-                    syllableRequired = data.romTitle.split(' ').length
+                    syllableRequired = romTitle.split(' ').length
             }   else {
                     syllableRequired = document.querySelector('#syllable-required').value
             }
             
             if (pinyinIsChecked && data.language === 'mandarin') {
-                const romTitle = generateUserRomString(data.romTitle, syllableRequired)
-                document.querySelector('#lyrics-output').value = `${romTitle}${data.title}\n`
+                const romTitleSyllableCount = generateUserRomString(romTitle, syllableRequired)
+                document.querySelector('#lyrics-output').value = `${romTitleSyllableCount}${title}\n`
             }   else {
-                document.querySelector('#lyrics-output').value = `${data.title}\n`
+                document.querySelector('#lyrics-output').value = `${title}\n`
             }
 
-            document.querySelector('#lyrics-output').value += `${data.artist}\n`
-            document.querySelector('#lyrics-output').value += `Key: ${data.key}\n`
-            document.querySelector('#lyrics-output').value += `Tempo: ${data.tempo}\n`
-            document.querySelector('#lyrics-output').value += `Duration: ${data.duration}\n`
-            document.querySelector('#lyrics-output').value += `Time: ${data.time}\n`
-            document.querySelector('#lyrics-output').value += `Keywords: ${data.firstAlphabet}, ${data.language}\n\n`
-            document.querySelector('#lyrics-output').value += `Year Released: ${data.yearReleased}\n\n`
-            document.querySelector('#lyrics-output').value += `O: ${data.key}\n\n`
+            document.querySelector('#lyrics-output').value += `${artist}\n`
+            document.querySelector('#lyrics-output').value += `Key: ${key}\n`
+            document.querySelector('#lyrics-output').value += `Tempo: ${tempo}\n`
+            document.querySelector('#lyrics-output').value += `Duration: ${duration}\n`
+            document.querySelector('#lyrics-output').value += `Time: ${time}\n`
+            document.querySelector('#lyrics-output').value += `Keywords: ${firstAlphabet}, ${language}\n\n`
+            document.querySelector('#lyrics-output').value += `Year Released: ${yearReleased}\n\n`
+            document.querySelector('#lyrics-output').value += `O: ${key}\n\n`
 
             const contributeIsChecked = document.querySelector('#contribute-is-checked').checked
 
