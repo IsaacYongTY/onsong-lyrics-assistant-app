@@ -52,16 +52,23 @@ const addSpace = (lyrics) => {
     let i=0
     let newString = ''
 
-    for(i=0; i < lyrics.length; i++) {
+    const checkAlphanumericRegex = /\w/g
 
-        if(lyrics[i]  !== ' ' && lyrics[i] !== '\n') {
-           newString = newString + lyrics[i] + ' '
-        }
-    
-        if(lyrics[i] === '\n') {
-            newString = newString + '\n'
-        }
-    }
+    const regex = / {2,}/g
+
+    const lyricsArray = lyrics.split('\n')
+
+    lyricsArray.forEach((line) => {
+        
+
+        newString += line.split('').join(' ')
+        
+        newString += '\n'
+
+        
+    })
+
+    newString = newString.replace(regex, ' ')
 
     return newString
 }
