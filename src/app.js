@@ -73,7 +73,7 @@ app.get('', (req, res) => {
 
     res.render('dashboard', {
       title: 'Dashboard',
-      userFirstName: req.cookies.user.firstName
+      userFirstName: ''
     })
   } else {
     res.render('index', {
@@ -90,7 +90,7 @@ app.get('/dashboard', auth, (req, res) => {
   console.log(req.user)
   res.render('dashboard', {
     title: 'Dashboard',
-    userFirstName: req.cookies.user.firstName
+    userFirstName: ''
   })
 })
 
