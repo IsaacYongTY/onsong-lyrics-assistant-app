@@ -16,6 +16,7 @@ const removeRepeat = (lyrics) => {
 
 
 const addSpace = (lyrics) => {
+    let emptySpace = ' '
     let i=0
     let newString = ''
 
@@ -28,10 +29,13 @@ const addSpace = (lyrics) => {
         for(i=0; i < line.length; i++) {
             newString += line[i]
             if(line[i].search(regex1) < 0 && line[i] !== '(' && line[i+1] !== ')') {
-                newString += ' '
+                newString += emptySpace
             }   
+
+            
         }
- 
+        newString = newString.trimRight()
+        console.log(newString)
         newString += '\n'
     })
 

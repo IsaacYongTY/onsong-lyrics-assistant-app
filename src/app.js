@@ -73,7 +73,7 @@ app.get('', (req, res) => {
   
     res.render('dashboard', {
       title: 'Dashboard',
-      userFirstName: req.user
+      userFirstName: req.user.firstName?  req.user.firstName : 'Unknown'
     })
   } else {
     res.render('index', {

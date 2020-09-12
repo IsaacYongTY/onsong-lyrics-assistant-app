@@ -14,11 +14,7 @@ router.get('/tracks', auth, async (req, res) => {
     
     try {
         const data = await getAudioFeatures(input)
-  
-         data.contributorId = req.user._id
-
-        
-
+        data.contributorId = req.user._id
         res.send(data)
   
     } catch (e) {
