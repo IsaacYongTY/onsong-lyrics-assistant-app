@@ -70,10 +70,10 @@ app.get('/login', (req, res) => {
 app.get('', (req, res) => {
 
   if(req.cookies.auth_token) {
-  
+
     res.render('dashboard', {
       title: 'Dashboard',
-      userFirstName: req.user.firstName?  req.user.firstName : 'Unknown'
+      userFirstName: req.cookies.user.firstName
     })
   } else {
     res.render('index', {
@@ -87,9 +87,10 @@ app.get('', (req, res) => {
 })
 
 app.get('/dashboard', auth, (req, res) => {
+  console.log(req.user)
   res.render('dashboard', {
     title: 'Dashboard',
-    userFirstName: req.user.firstName
+    userFirstName: req.cookies.user.firstName
   })
 })
 
