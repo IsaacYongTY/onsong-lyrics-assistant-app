@@ -107,7 +107,7 @@ const createChordsInKey = (inputKey) => {
     return reshuffledNotes
 }
 
- const assignChordsToProg = function (key,progression) {
+ const assignChordsToProg = function (notesInKeyArray,progression) {
 
      let progressionArray = progression.match(/(b[1-7])|([1-7]m)|([1-7]M)|\d/g)
 
@@ -117,27 +117,27 @@ const createChordsInKey = (inputKey) => {
          if (chordNum.length > 1) {
 
              if (chordNum[0] === 'b') {
-                 result = key[chordNum[1] - 1] + 'b'
+                 result = notesInKeyArray[chordNum[1] - 1] + 'b'
              }
 
              if (chordNum[1] === 'm') {
-                 result = key[chordNum[0] - 1] + 'm'
+                 result = notesInKeyArray[chordNum[0] - 1] + 'm'
              }
 
              if (chordNum[1] === 'M') {
-                 result = key[chordNum[0] - 1].replace(/m/, '')
+                 result = notesInKeyArray[chordNum[0] - 1].replace(/m/, '')
              }
 
          } else {
              //default family chords
              if (chordNum[0] == 3 || chordNum[0] == 6) {
-                 result = key[chordNum - 1] + 'm'
+                 result = notesInKeyArray[chordNum - 1] + 'm'
              } else if (chordNum[0] == 2) {
-                 result = key[chordNum - 1] + 'm7'
+                 result = notesInKeyArray[chordNum - 1] + 'm7'
              } else if (chordNum[0] == 7) {
-                 result = key[chordNum - 1] + 'dim7'
+                 result = notesInKeyArray[chordNum - 1] + 'dim7'
              } else {
-                 result = key[chordNum[0] - 1]
+                 result = notesInKeyArray[chordNum[0] - 1]
              }
          }
 

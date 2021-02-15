@@ -45,8 +45,8 @@ document.querySelector('#prog-form').addEventListener('submit', (e) => {
    let result
    let inputProgression = e.target.elements.inputProgression.value
    let spacing = e.target.elements.inputSpacing.value
-   let key = createChordsInKey(e.target.elements.inputKey.value)
-   let chordsProgressionArray = assignChordsToProg(key,inputProgression)
+   let notesInKeyArray = createChordsInKey(e.target.elements.inputKey.value)
+   let chordsProgressionArray = assignChordsToProg(notesInKeyArray,inputProgression)
 
    result = isHalfBar ? halfBarProg(chordsProgressionArray, spacing) : fullBarProg(chordsProgressionArray, spacing)
 
