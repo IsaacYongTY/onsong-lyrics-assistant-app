@@ -1,4 +1,4 @@
-const renderSpacing = (spacing, chordLength) => spaceChar.repeat(spacing - chordLength)
+const renderSpacing = (spacing, chordLength) => spaceChar.repeat(spacing - (chordLength - 1))
 
 const keyMap = [
     {
@@ -68,7 +68,7 @@ const keyMap = [
     },
 ]
 
-const addAccidentals = (inputKey) => {
+const createChordsInKey = (inputKey) => {
 
     const resultKey = keyMap.find((key) => key.key === inputKey)
 
@@ -104,9 +104,6 @@ const addAccidentals = (inputKey) => {
         }
         i++
     }
-
-
-
     return reshuffledNotes
 }
 
@@ -115,7 +112,6 @@ const addAccidentals = (inputKey) => {
      let progressionArray = progression.match(/(b[1-7])|([1-7]m)|([1-7]M)|\d/g)
 
      return progressionArray.map((chordNum) => {
-         //5m
          let result = ''
          // If explicitly specified
          if (chordNum.length > 1) {
@@ -151,23 +147,17 @@ const addAccidentals = (inputKey) => {
 
  }
 
- const fullBarProg = function (getSection,chords, getSpace) {
+ const fullBarProg = function (chords, space) {
     let resultString = ''
  
-    if (getSection !== '') {
 
-       resultString = `${getSection}:\n`
-    } 
  
     // Generate string
     for(index = 0; index !== chords.length; index++) {
-       resultString = resultString + `|\xa0`
+        resultString = resultString + `|\xa0`
 
-       if (chords[index].length === 1) {    
-            resultString += `[${chords[index]}]` + renderSpacing(getSpace, 0)               
-         }  else {
-          resultString += `[${chords[index]}]` + renderSpacing(getSpace, chords[index].length - 1) 
-       } 
+        resultString += `[${chords[index]}]` + renderSpacing(space, chords[index].length)
+
        if((index + 1) % 4 === 0 && index < chords.length) {
        resultString += `|\n` // Close and go to next line
        }
@@ -184,16 +174,12 @@ const addAccidentals = (inputKey) => {
     return resultString
  }
 
- const halfBarProg = function (getSection,chords, getSpace, progressionNumOnly) {
-    halfSpace = Math.ceil((getSpace/2))
+ const halfBarProg = function (chords, space) {
+    halfSpace = Math.ceil((space/2))
     let resultString = ''
 
-    if (getSection !== '') {
-       resultString = `${getSection}:\n`
-    } 
-
     // Generate string
-    for(let index = 0; index !== progressionNumOnly.length; index++) {
+    for(let index = 0; index !== chords.length; index++) {
     
     // Extra 'if' code for half bar program
        if ((index + 1) % 2 !== 0) {
@@ -203,25 +189,25 @@ const addAccidentals = (inputKey) => {
 
        if (chords[index].length === 1) {    
 
-            resultString = resultString + `[${chords[index]}]` + renderSpacing(halfSpace, 0)    
+            resultString += `[${chords[index]}]` + renderSpacing(halfSpace, 0)
 
          }  else {
                 resultString += `[${chords[index]}]` + renderSpacing(halfSpace, chords[index].length - 1) 
          }
        
-       if((index + 1) % 4 === 0 && index < progressionNumOnly.length) {
+       if((index + 1) % 4 === 0 && index < chords.length) {
             resultString += `|\n` // Ending bar line every 4 chords
         }   
     }
     
     // For ending
-    if (progressionNumOnly.length > 0) {
+    if (chords.length > 0) {
        
-        if (progressionNumOnly.length % 2 !== 0) {
+        if (chords.length % 2 !== 0) {
             resultString += `${renderSpacing(halfSpace + 3 ,0)}|\n\n`
             // Note: in [Xyyy] halfBarSpace,  included __yyy_KK, y + K = halfBarSpace, empty space = constant = 3
             // For position 2,4,6...
-        }   else if ((progressionNumOnly.length + 1) % 2 !== 0 && progressionNumOnly.length % 4 !== 0) {
+        }   else if ((chords.length + 1) % 2 !== 0 && chords.length % 4 !== 0) {
                 resultString += `|\n\n`
                 
                 // Note: in [Xyyy] halfBarSpace,  included __yyy_KK, y + K = halfBarSpace, empty space = constant = 3

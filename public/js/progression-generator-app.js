@@ -4,68 +4,63 @@
            // spaceChar = 'K'
          
 // Initialization
-// const key = {}
-let chords = []
-isHalfBar = false
+let isHalfBar = false
 
 let standardFullBarSpace = 12
 let standardHalfBarSpace = 14
 
-document.querySelector('#spacing').value = standardFullBarSpace
+let spacing = document.querySelector('#spacing')
+let outputTextArea = document.querySelector('#output-text-area')
+let progressionText = document.querySelector('#prog-text')
+let clearButton = document.querySelector('#clear')
+let copyButton = document.querySelector('#copy')
+let progChoice1 = document.querySelector('#prog-choice-1')
+let progChoice2 = document.querySelector('#prog-choice-2')
+let commonProgressionList = document.querySelector('#common-progression-list')
 
-document.querySelector('#prog-choice-1').addEventListener('click', function(e) {
+spacing.value = standardFullBarSpace
+
+progChoice1.addEventListener('click', () => {
    isHalfBar = false
-   document.querySelector('#spacing').value = standardFullBarSpace
+   spacing.value = standardFullBarSpace
 })
 
-document.querySelector('#prog-choice-2').addEventListener('click', function(e) {
+progChoice2.addEventListener('click', () => {
    isHalfBar = true
-   document.querySelector('#spacing').value = standardHalfBarSpace
+   spacing.value = standardHalfBarSpace
 })
 
-document.querySelector('#prog-common-progression').addEventListener('change', function (e) {
-   document.querySelector('#prog-text').value = e.target.value
+commonProgressionList.addEventListener('change', (e) => {
+   progressionText.value = e.target.value
 })
 
-document.querySelector('#prog-text').addEventListener('input', function (e) {
-   document.querySelector('#prog-common-progression').value = ''
+progressionText.addEventListener('input',  () => {
+   commonProgressionList.value = ''
 })
 
-document.querySelector('#prog-form').addEventListener('submit', function (e) {
+document.querySelector('#prog-form').addEventListener('submit', (e) => {
 
    e.preventDefault()
 
-   let result = ''
+   let result
+   let inputProgression = e.target.elements.inputProgression.value
+   let spacing = e.target.elements.inputSpacing.value
+   let key = createChordsInKey(e.target.elements.inputKey.value)
+   let chordsProgressionArray = assignChordsToProg(key,inputProgression)
 
-   // keyLibrary (e.target.elements.inputKey.value)
+   result = isHalfBar ? halfBarProg(chordsProgressionArray, spacing) : fullBarProg(chordsProgressionArray, spacing)
 
-   let key = addAccidentals(e.target.elements.inputKey.value)
-
-   console.log(key)
-   if (isHalfBar === false) {
-      result = fullBarProg(e.target.elements.inputSection.value, 
-                                       assignChordsToProg(key,e.target.elements.inputProgression.value),
-                                       e.target.elements.inputSpacing.value,
-
-   )}  else {
-      result = halfBarProg(e.target.elements.inputSection.value, 
-                                       assignChordsToProg(e.target.elements.inputProgression.value),
-                                       e.target.elements.inputSpacing.value
-
-   )}
-   
-   document.querySelector('#output-result').value += result
-   document.querySelector('#prog-section').value = ''
+   outputTextArea.value += result
 })
 
-document.querySelector('#clear').addEventListener('click', function (e) {
-   document.querySelector('#output-result').value = ''
+clearButton.addEventListener('click', () => {
+   outputTextArea.value = ''
 })
 
-document.querySelector('#copy').addEventListener('click', function (e) {
-   document.querySelector('#output-result').select()
+copyButton.addEventListener('click', () => {
+   outputTextArea.select()
    document.execCommand('copy')
-   document.querySelector('#output-result').blur()
+   outputTextArea.blur()
 })
 
 

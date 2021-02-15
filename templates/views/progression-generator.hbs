@@ -12,7 +12,7 @@
         {{>navbar}}
         <div class="main-content">
             <form id="prog-form">
-                <p>Key:&nbsp&nbsp<select id="prog-key" placeholder="Section here" name="inputKey"> 
+                <p>Key:&nbsp&nbsp<select id="prog-key" name="inputKey">
                         <option>C</option>
                         <option>Db</option>
                         <option>D</option>
@@ -32,28 +32,9 @@
                     
 
                     </p>
-                <p>
-                    Section:&nbsp&nbsp<select id="prog-section" placeholder="Section here" name="inputSection">
-                        <option></option>
-                        <option>Intro</option>
-                        <option>Verse</option>
-                        <option>Pre-Chorus</option>
-                        <option>Chorus</option>
-                        <option>Interlude</option>
-                        <option>Bridge</option>
-                        <option>Outro</option>
-                        <option>Hook</option>
-                        <option>Last Line</option>
-                        <option>Rap</option>
-                    </select>
-
-        
-
-                </p>
-                
 
                 <p>Common <br />Progression:
-                    <select id="prog-common-progression" class="dropdown-menu">
+                    <select id="common-progression-list" class="dropdown-menu">
                         <option></option>
                         <option value="15634325">Typical Chinese Ballad (Canon)</option>
                         <option value="6415">Top 40s 4-Chords 1 (vi-IV-I-V)</option>
@@ -63,7 +44,16 @@
                         <option></option>
                     </select>
 
-                <input id="prog-text" type="text" placeholder="eg. 6415 or 1562M34mb7" name="inputProgression" value="" size = "25" autocomplete="off"> &lt-- Custom input
+                <input
+                    id="prog-text"
+                    type="text"
+                    placeholder="eg. 6415 or 1562M34mb7"
+                    name="inputProgression"
+                    value=""
+                    size = "25"
+                    autocomplete="off"
+                >
+                    &lt-- Custom input
                 </p>
                 
 
@@ -76,7 +66,7 @@
                 <br/>
                 </p>
 
-                <textarea name="output" id="output-result" type="text" cols="70" rows="20"></textarea>
+                <textarea name="output" id="output-text-area" type="text" cols="70" rows="20"></textarea>
                     
                     <br/>
 
@@ -86,13 +76,10 @@
 
             <button id="clear">Clear</button>
             <button id="copy">Copy</button>
-            
 
             <br/>
-            
 
-            <div id="result">
-            </div>
+            <div id="result"></div>
 
 
             <p><a href="..">Back</a></p>
@@ -103,8 +90,6 @@
 
         <script src="/js/progression-generator-functions.js"></script>
         <script src="/js/progression-generator-app.js"></script>
-
-        
 
     </body>
 
