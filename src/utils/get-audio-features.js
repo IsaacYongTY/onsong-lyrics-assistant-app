@@ -7,7 +7,6 @@ const containsChinese = require('contains-chinese')
 const getFirstAlphabet = require('./get-first-alphabet')
 const getRomTitle = require('./get-rom-title')
 
-
 const spotifyWebApi = require('spotify-web-api-node')
 
 const spotifyApi = new spotifyWebApi({
@@ -26,21 +25,22 @@ const getAudioFeatures = async(trackId) => {
         let data = await spotifyApi.getAudioFeaturesForTrack(trackId)
         const trackInfo = await spotifyApi.getTrack(trackId)
 
-        const processedTrackData = {
-            key: assignPitchClass(data.body.key,data.body.mode),
-            tempo: convertTempo(data.body.tempo, data.body.time_signature),
-            uri: data.body.uri,
-            duration: convertDurationToMinSec(data.body.duration_ms),
-            time: convertTime(data.body.time_signature),
-            rawData: {audioFeature: data.body, trackInfo: trackInfo.body},
-            title: trackInfo.body.name,
-            artist: trackInfo.body.artists[0].name,
-            artistId: trackInfo.body.artists[0].id,
-            verified: false,
-            yearReleased: trackInfo.body.album.release_date.slice(0,4)
-        };
+        let { key, mode, tempo, time_signature, uri, duration_ms } = data.body
+        let { artists, name, album} = trackInfo.body
 
-     
+        const processedTrackData = {
+            key: assignPitchClass(key, mode),
+            tempo: convertTempo(tempo, time_signature),
+            uri: uri,
+            duration: convertDurationToMinSec(duration_ms),
+            time: convertTime(time_signature),
+            rawData: {audioFeature: data.body, trackInfo: trackInfo.body},
+            title: name,
+            artist: artists[0].name,
+            artistId: artists[0].id,
+            verified: false,
+            yearReleased: album.release_date.slice(0,4)
+        };
 
         const isChinese = containsChinese(processedTrackData.title)
 

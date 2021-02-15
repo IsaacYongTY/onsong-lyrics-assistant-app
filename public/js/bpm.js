@@ -2,16 +2,17 @@ let count = 0
 let startTime = 0
 let totalTimeLapsed = 0
 let duration = 5000 // Listen for 5 seconds
+let resetWaitTime = 2000
+let averageTimeLapsed
 
 calculateBPM = function () {
     if (count !== 0) {
-        timeLapsed = Date.now() - startTime
+        let timeLapsed = Date.now() - startTime
 
-        totalTimeLapsed = totalTimeLapsed + timeLapsed
-
+        totalTimeLapsed += timeLapsed
         averageTimeLapsed = totalTimeLapsed / count
 
-        if (startTime + 2000 >= Date.now() ) {
+        if (Date.now() - startTime <= resetWaitTime ) {
             if (count > 1) {
                 document.querySelector('#bpm-value').value = (1/(averageTimeLapsed/60000)).toFixed(1)
             } 
@@ -36,7 +37,6 @@ calculateBPM = function () {
 
 
 document.querySelector('#tap').addEventListener('click', function (e) {
-    //document.querySelector('#tap').focus()
     calculateBPM()
 })
 
@@ -57,45 +57,6 @@ document.addEventListener('keydown', function (e) {
     }
 })
 
-document.querySelector('#listen').addEventListener('click', function (e) {     
-    listenSong(duration)
-})
-
-// Listen to the song for n seconds
-const listenSong = function (duration) {
-    let timeLapsed = 0
-    let interval = 0
-    let count = 0
-    while (timeLapsed < duration - 1000) {
-        let startTime = Date.now()
-        // On microphone to listen to music
-        // Run calculateBPM() every time spike is detected
-
-       
-        let endTime = Date.now()
-
-        //timeLapsed += (endTime - startTime)
-
-        
-        
-         // Dummy program to mimic 
-         let volDiff = 30
-         if (volDiff > 20 && interval % 500 === 0) {
-             console.log(timeLapsed)
-             count = count + 1
- 
-         }
-         // Test time lapse
-        
-        timeLapsed += 200
-        interval += 500
-        
-    }
-    document.querySelector('#bpm-value').value = (count/(interval/60000)).toFixed(1)
-    console.log(timeLapsed)
-}
-
-//
 
     
 

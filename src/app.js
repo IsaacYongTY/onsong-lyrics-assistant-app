@@ -22,8 +22,6 @@ const partialsPath = path.join(__dirname, '../templates/partials')
 // MongoDB
 require('./db/mongoose.js')
 
-
-
 app.use(express.static(publicDirectoryPath))
 app.use(express.json())
 

@@ -4,12 +4,14 @@
            // spaceChar = 'K'
          
 // Initialization
-const key = {}
+// const key = {}
 let chords = []
 isHalfBar = false
 
-let standardFullBarSpace = 14
+let standardFullBarSpace = 12
 let standardHalfBarSpace = 14
+
+document.querySelector('#spacing').value = standardFullBarSpace
 
 document.querySelector('#prog-choice-1').addEventListener('click', function(e) {
    isHalfBar = false
@@ -30,23 +32,26 @@ document.querySelector('#prog-text').addEventListener('input', function (e) {
 })
 
 document.querySelector('#prog-form').addEventListener('submit', function (e) {
-   
+
    e.preventDefault()
 
    let result = ''
 
-   keyLibrary (e.target.elements.inputKey.value)
-   
+   // keyLibrary (e.target.elements.inputKey.value)
+
+   let key = addAccidentals(e.target.elements.inputKey.value)
+
+   console.log(key)
    if (isHalfBar === false) {
       result = fullBarProg(e.target.elements.inputSection.value, 
-                                       assignChordsToProg(e.target.elements.inputProgression.value),
+                                       assignChordsToProg(key,e.target.elements.inputProgression.value),
                                        e.target.elements.inputSpacing.value,
-                                       removeSuffix(e.target.elements.inputProgression.value)
+
    )}  else {
       result = halfBarProg(e.target.elements.inputSection.value, 
                                        assignChordsToProg(e.target.elements.inputProgression.value),
-                                       e.target.elements.inputSpacing.value,
-                                       removeSuffix(e.target.elements.inputProgression.value)
+                                       e.target.elements.inputSpacing.value
+
    )}
    
    document.querySelector('#output-result').value += result

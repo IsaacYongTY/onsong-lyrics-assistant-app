@@ -1,23 +1,9 @@
  // Remove everything after the open bracket
 
  const removeBrackets = (input) => {
-    if (input.includes('(')) {
-        removeIndex = input.indexOf('(')
-        input = input.slice(0, removeIndex).trim()
-    }
+     const removeIndex = input.search(/\(|（|-/g)
 
-    if (input.includes('（')) {
-        removeIndex = input.indexOf('(')
-        input = input.slice(0, removeIndex).trim()
-    }
-
-    // Mostly found in Chinese song title, for commentary
-    if (input.includes('-')) {
-        removeIndex = input.indexOf('-')
-        input = input.slice(0, removeIndex).trim()
-    }
-
-    return input
+     return input.slice(0, removeIndex > -1 ? removeIndex : input.length).trim()
  }
  
  module.exports = removeBrackets
